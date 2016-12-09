@@ -1,5 +1,7 @@
 package ru.egalvi.hibernatetutorial.simpleexample;
 
+import java.util.Set;
+
 /**
  *
  */
@@ -8,6 +10,7 @@ public class Employee {
     private String firstName;
     private String lastName;
     private int salary;
+    private Set certificates;
 
     public Employee() {}
     public Employee(String fname, String lname, int salary) {
@@ -38,6 +41,12 @@ public class Employee {
     }
     public void setSalary( int salary ) {
         this.salary = salary;
+    }
+    public Set getCertificates() {
+        return certificates;
+    }
+    public void setCertificates( Set certificates ) {
+        this.certificates = certificates;
     }
 }
 
