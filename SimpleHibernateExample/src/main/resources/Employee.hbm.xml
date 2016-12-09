@@ -12,6 +12,15 @@
         <id name="id" type="int" column="id">
             <generator class="native"/>
         </id>
+        <!--
+        Collection type	Mapping and Description
+        java.util.Set	        This is mapped with a <set> element and initialized with java.util.HashSet
+        java.util.SortedSet	    This is mapped with a <set> element and initialized with java.util.TreeSet. The sort attribute can be set to either a comparator or natural ordering.
+        java.util.List	        This is mapped with a <list> element and initialized with java.util.ArrayList
+        java.util.Collection	This is mapped with a <bag> or <ibag> element and initialized with java.util.ArrayList
+        java.util.Map	        This is mapped with a <map> element and initialized with java.util.HashMap
+        java.util.SortedMap	    This is mapped with a <map> element and initialized with java.util.TreeMap. The sort attribute can be set to either a comparator or natural ordering.
+        -->
         <set name="certificates" cascade="all">
             <key column="employee_id"/>
             <one-to-many class="ru.egalvi.hibernatetutorial.simpleexample.Certificate"/>
