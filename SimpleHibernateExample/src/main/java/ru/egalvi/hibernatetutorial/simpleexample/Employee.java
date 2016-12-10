@@ -11,12 +11,14 @@ public class Employee {
     private String lastName;
     private int salary;
     private Set certificates;
+    private Address address;
 
     public Employee() {}
-    public Employee(String fname, String lname, int salary) {
+    public Employee(String fname, String lname, int salary, Address address ) {
         this.firstName = fname;
         this.lastName = lname;
         this.salary = salary;
+        this.address = address;
     }
     public int getId() {
         return id;
@@ -47,6 +49,12 @@ public class Employee {
     }
     public void setCertificates( Set certificates ) {
         this.certificates = certificates;
+    }
+    public Address getAddress() {
+        return address;
+    }
+    public void setAddress( Address address ) {
+        this.address = address;
     }
 }
 

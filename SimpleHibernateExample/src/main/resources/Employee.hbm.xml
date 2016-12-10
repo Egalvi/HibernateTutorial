@@ -28,6 +28,7 @@
         <property name="firstName" column="first_name" type="string"/>
         <property name="lastName" column="last_name" type="string"/>
         <property name="salary" column="salary" type="int"/>
+        <many-to-one name="address" column="address" class="ru.egalvi.hibernatetutorial.simpleexample.Address" not-null="true"/>
     </class>
 
     <class name="ru.egalvi.hibernatetutorial.simpleexample.Certificate" table="CERTIFICATE">
@@ -38,5 +39,18 @@
             <generator class="native"/>
         </id>
         <property name="name" column="certificate_name" type="string"/>
+    </class>
+
+    <class name="ru.egalvi.hibernatetutorial.simpleexample.Address" table="ADDRESS">
+        <meta attribute="class-description">
+            This class contains the address detail.
+        </meta>
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="street" column="street_name" type="string"/>
+        <property name="city" column="city_name" type="string"/>
+        <property name="state" column="state_name" type="string"/>
+        <property name="zipcode" column="zipcode" type="string"/>
     </class>
 </hibernate-mapping>
