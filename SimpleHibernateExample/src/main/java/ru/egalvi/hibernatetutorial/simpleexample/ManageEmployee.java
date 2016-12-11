@@ -19,6 +19,14 @@ public class ManageEmployee {
             throw new ExceptionInInitializerError(ex);
         }
         ManageEmployee ME = new ManageEmployee();
+
+        /* Let us have a set of diplomas for the first employee  */
+        HashSet diplomas = new HashSet();
+
+        diplomas.add(new Diploma("MCA"));
+        diplomas.add(new Diploma("MBA"));
+        diplomas.add(new Diploma("PMP"));
+
         /* Let us have a set of certificates for the first employee  */
         HashSet set1 = new HashSet();
         set1.add(new Certificate("MCA"));
@@ -29,7 +37,7 @@ public class ManageEmployee {
         Address address = ME.addAddress("Kondapur", "Hyderabad", "AP", "532");
 
         /* Add employee records in the database */
-        Integer empID1 = ME.addEmployee("Manoj", "Kumar", 4000, set1, address);
+        Integer empID1 = ME.addEmployee("Manoj", "Kumar", 4000, set1, address, diplomas);
 
         /* Another set of certificates for the second employee  */
         HashSet set2 = new HashSet();
@@ -37,7 +45,7 @@ public class ManageEmployee {
         set2.add(new Certificate("BA"));
 
         /* Add another employee record in the database */
-        Integer empID2 = ME.addEmployee("Dilip", "Kumar", 3000, set2, address);
+        Integer empID2 = ME.addEmployee("Dilip", "Kumar", 3000, set2, address, diplomas);
 
         /* List down all the employees */
         ME.listEmployees();
@@ -55,7 +63,7 @@ public class ManageEmployee {
 
     /* Method to add an employee record in the database */
     public Integer addEmployee(String fname, String lname,
-                               int salary, Set cert, Address address) {
+                               int salary, Set cert, Address address, Set diplomas) {
         Session session = factory.openSession();
         Transaction tx = null;
         Integer employeeID = null;
@@ -63,6 +71,7 @@ public class ManageEmployee {
             tx = session.beginTransaction();
             Employee employee = new Employee(fname, lname, salary, address);
             employee.setCertificates(cert);
+            employee.setDiplomas(diplomas);
             employeeID = (Integer) session.save(employee);
             tx.commit();
         } catch (HibernateException e) {
@@ -92,6 +101,12 @@ public class ManageEmployee {
                      certificates.iterator(); iterator2.hasNext(); ) {
                     Certificate certName = (Certificate) iterator2.next();
                     System.out.println("Certificate: " + certName.getName());
+                }
+                Set diplomas = employee.getDiplomas();
+                for (Iterator iterator2 =
+                     diplomas.iterator(); iterator2.hasNext(); ) {
+                    Diploma certName = (Diploma) iterator2.next();
+                    System.out.println("Diploma: " + certName.getName());
                 }
             }
             tx.commit();

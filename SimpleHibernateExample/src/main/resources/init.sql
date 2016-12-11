@@ -17,3 +17,12 @@ create table ADDRESS (
    state_name VARCHAR(40) NULL,
    zipcode VARCHAR(10) NULL
 );
+create table DIPLOMA (
+   id INT NOT NULL auto_increment PRIMARY KEY,
+   certificate_name VARCHAR(30) NULL
+);
+create table EMP_DIP (
+   employee_id INT NOT NULL,
+   certificate_id INT NOT NULL,
+   PRIMARY KEY (employee_id,certificate_id)
+);
