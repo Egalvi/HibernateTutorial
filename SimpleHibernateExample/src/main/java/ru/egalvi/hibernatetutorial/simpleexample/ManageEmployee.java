@@ -28,27 +28,27 @@ public class ManageEmployee {
         diplomas.add(new Diploma("PMP"));
 
         /* Let us have a set of certificates for the first employee  */
-        HashSet set1 = new HashSet();
-        set1.add(new Certificate("MCA"));
-        set1.add(new Certificate("MBA"));
-        set1.add(new Certificate("PMP"));
+        HashSet certificates1 = new HashSet();
+        certificates1.add(new Certificate("MCA"));
+        certificates1.add(new Certificate("MBA"));
+        certificates1.add(new Certificate("PMP"));
 
         /* Let us have one address object */
         Address address = ME.addAddress("Kondapur", "Hyderabad", "AP", "532");
 
         /* Let us have one work address object, this one will be embedded */
-        WorkAddress workAddress = new WorkAddress("Kondapur", "Hyderabad", "AP", "532");
+        Address workAddress = new Address("Kondapur", "Hyderabad", "AP", "532");
 
         /* Add employee records in the database */
-        Integer empID1 = ME.addEmployee("Manoj", "Kumar", 4000, set1, address,workAddress, diplomas);
+        Integer empID1 = ME.addEmployee("Manoj", "Kumar", 4000, certificates1, address,workAddress, diplomas);
 
         /* Another set of certificates for the second employee  */
-        HashSet set2 = new HashSet();
-        set2.add(new Certificate("BCA"));
-        set2.add(new Certificate("BA"));
+        HashSet certificates2 = new HashSet();
+        certificates2.add(new Certificate("BCA"));
+        certificates2.add(new Certificate("BA"));
 
         /* Add another employee record in the database */
-        Integer empID2 = ME.addEmployee("Dilip", "Kumar", 3000, set2, address,workAddress, diplomas);
+        Integer empID2 = ME.addEmployee("Dilip", "Kumar", 3000, certificates2, address,workAddress, diplomas);
 
         /* List down all the employees */
         ME.listEmployees();
@@ -66,7 +66,7 @@ public class ManageEmployee {
 
     /* Method to add an employee record in the database */
     public Integer addEmployee(String fname, String lname,
-                               int salary, Set cert, Address address, WorkAddress workAddress, Set diplomas) {
+                               int salary, Set cert, Address address, Address workAddress, Set diplomas) {
         Session session = factory.openSession();
         Transaction tx = null;
         Integer employeeID = null;
@@ -100,6 +100,18 @@ public class ManageEmployee {
                 System.out.print("  Last Name: " + employee.getLastName());
                 System.out.println("  Salary: " + employee.getSalary());
                 Set certificates = employee.getCertificates();
+                Address address = employee.getAddress();
+                System.out.println("Address ");
+                System.out.println("\tStreet: " +  address.getStreet());
+                System.out.println("\tCity: " + address.getCity());
+                System.out.println("\tState: " + address.getState());
+                System.out.println("\tZipcode: " + address.getZipcode());
+                Address workAddress = employee.getWorkAddress();
+                System.out.println("Work address ");
+                System.out.println("\tStreet: " +  workAddress.getStreet());
+                System.out.println("\tCity: " + workAddress.getCity());
+                System.out.println("\tState: " + workAddress.getState());
+                System.out.println("\tZipcode: " + workAddress.getZipcode());
                 for (Iterator iterator2 =
                      certificates.iterator(); iterator2.hasNext(); ) {
                     Certificate certName = (Certificate) iterator2.next();

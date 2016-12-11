@@ -13,12 +13,12 @@ public class Employee {
     private Set certificates;
     private Set diplomas;
     private Address address;
-    private WorkAddress workAddress;
+    private Address workAddress;
 
     public Employee() {
     }
 
-    public Employee(String fname, String lname, int salary, Address address, WorkAddress workAddress) {
+    public Employee(String fname, String lname, int salary, Address address, Address workAddress) {
         this.firstName = fname;
         this.lastName = lname;
         this.salary = salary;
@@ -82,11 +82,11 @@ public class Employee {
         this.diplomas = diplomas;
     }
 
-    public WorkAddress getWorkAddress() {
+    public Address getWorkAddress() {
         return workAddress;
     }
 
-    public void setWorkAddress(WorkAddress workAddress) {
+    public void setWorkAddress(Address workAddress) {
         this.workAddress = workAddress;
     }
 }
